@@ -2,7 +2,7 @@ from django.urls import path
 from .views import ( trip,index,
  searchLocation, searchTrip,
     home,flight,sea,visa,hotel,
-    document,insurance,about,shipping,addpostview)
+    document,insurance,about,shipping,add_post,edit_post,remove_post)
 
 urlpatterns = [
     path('', home, name='home'),
@@ -18,5 +18,7 @@ urlpatterns = [
     path('document/', document, name='document'),
     path('shipping/', shipping, name='shipping'),
     path('about/', about, name='about'),
-    path('add_post/',addpostview,name='addpost'),
+    path('add_post/add', add_post, name='add_post'),
+    path('remove_post/<int:pk>/remove', remove_post, name='remove_post'),
+    path('edit_post/<int:pk>/edit', edit_post, name='edit_post'),
    ]

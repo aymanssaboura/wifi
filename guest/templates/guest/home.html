@@ -4,7 +4,7 @@
     {% load static %}
     {% block content %}
   
-
+  
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide pointer-event" data-ride="carousel">
             <div class="carousel-inner">
@@ -14,7 +14,8 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Tours &amp; Travel</h4>
                             <h1 class="display-3 text-white mb-md-4">Let's Discover The World Together</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                            
+                            <a href="{% url 'add_post' %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Add Post</a>
                         </div>
                     </div>
                 </div>
@@ -24,7 +25,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Tours &amp; Travel</h4>
                             <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                            <a href="{% url 'add_post' %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Add Post</a>
                         </div>
                     </div>
                 </div>
@@ -201,15 +202,7 @@
                     </div>
                     {% endfor %}
                     <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
-                    <div class="border-top mt-4 pt-4">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>{{ post.created_at|timesince }}</small></h6>
-                            <a href="{% url 'addpost' %}" class="nav-link ">
-                            <button type="button" class="btn btn-primary" hx-get= >Add Blog</button>
-                            </a>
-                            <h5 class="m-0">$350</h5>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

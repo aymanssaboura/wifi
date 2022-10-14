@@ -1,19 +1,23 @@
+import json
+from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView, ListView ,DetailView,CreateView
 from django.shortcuts import render, redirect
+from django.http import HttpResponse,HttpResponseRedirect
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
 from trip.models import Location , Trip 
 from company.models  import Company
 # Create your views here.
 from django.db.models import Q
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
 from datetime import datetime as dt
 from django.contrib.auth.decorators import user_passes_test
-from .forms import Post 
-from .models import Post as postmodel
-from django.http import HttpResponseRedirect
+from .forms import Post as PostForm,Imagepath as Imagepathform
+from .models import Post  ,imagepath 
+
 
 def home(request):
-        posts=postmodel.objects.all()
+        posts=Post.objects.all()
         companys = Company.objects.get(pk=1)
         return render(request, 'guest/home.html',{'company':companys,'navbar':"home",'posts':posts})
 
@@ -106,17 +110,108 @@ def about(request):
 
 
 
-def addpostview(request):
-      
-           form = Post(request.POST or None)
-           if form.is_valid() :
-              form.save()
-              messages.success(request,"post is added successfully")
-              return HttpResponseRedirect('/')
-           context  ={
-              "form":form
-              }    
 
-           return render(request, 'guest/add_post.html',context)
+@login_required
+def add_post(request):
+    if not request.user.is_MANAGER:
+        return HttpResponse(
+        status=403,
+        headers={
+            'HX-Trigger': json.dumps({
+
+               "postListChanged": None,
+            })
+        })
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        formimage = Imagepathform(request.POST,request.FILES)
+       
+        if form.is_valid() and formimage.is_valid():
+            
+            post = form.save(commit=False)
+            
+            post.save()
+            Imagepath = formimage.save(commit=False)
+         
+            Imagepath.save()
+
+           
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "postListChanged": None,
+                        "showMessage": f"{post.title} added."
+                    })
+                })
+        else:
+            return render(request, 'guest/add_post.html', {'form': form,'formimage':formimage})
+    else:
         
+        form = PostForm()
+        formimage = Imagepathform()
+        print(form)
+        print("************************************************")
+        print(formimage)
+    return render(request, 'guest/add_post.html', {
+        'form': form,'formimage':formimage })
+
+@login_required
+def edit_post(request, pk):
+    post = get_object_or_404(post, pk=pk)
+    imagepath = get_object_or_404(imagepath , pk = pk)
+    if request.method == "POST":
+        form = PostForm(request.POST,request.FILES, instance=post)
+        formimage = Imagepathform(request.POST, instance=imagepath)
+        # print(request.FILES, 'form.is_valid')
+
+        if form.is_valid()and formimage.is_valid():
+            Imagepath = imagepathform.save(commit=False)
+            Imagepath.company=request.user.company
+            Imagepath.author=request.user
+            Imagepath.save()
+
+            post = form.save(commit=False)
+            post.author=request.user
+            post.company=request.user.company
+            post.account=account
+
+            post.save()
+
+
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "postListChanged": None,
+                        "showMessage": f"{post.title} updated."
+                    })
+                }
+            )
+    else:
+        formimage = Imagepathform()
+        form = PostForm()
+        # print('form   :  ',form)
+    return render(request, '/', {
+        'form': form,'formimage':formimage,
+        'post': post,
+    })
+
+@login_required
+@ require_POST
+def remove_post(request, pk):
+    post = get_object_or_404(post, pk=pk)
+    imagepath = get_object_or_404(Imagepath , pk = pk)
+    imagepath.soft_delete()
+    post.soft_delete()
+    return HttpResponse(
+        status=204,
+        headers={
+            'HX-Trigger': json.dumps({
+                "postListChanged": None,
+                "showMessage": f"{post.title} deleted."
+            })
+        })
+
+
             
