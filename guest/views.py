@@ -1,16 +1,21 @@
+from django.views.generic import UpdateView, ListView ,DetailView,CreateView
 from django.shortcuts import render, redirect
 from trip.models import Location , Trip 
 from company.models  import Company
 # Create your views here.
 from django.db.models import Q
+from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from datetime import datetime as dt
-
-
+from django.contrib.auth.decorators import user_passes_test
+from .forms import Post 
+from .models import Post as postmodel
+from django.http import HttpResponseRedirect
 
 def home(request):
+        posts=postmodel.objects.all()
         companys = Company.objects.get(pk=1)
-        return render(request, 'guest/home.html',{'company':companys,'navbar':"home"})
+        return render(request, 'guest/home.html',{'company':companys,'navbar':"home",'posts':posts})
 
 
 
@@ -98,3 +103,20 @@ def shipping(request):
 def about(request):
     companys = Company.objects.get(pk=1)
     return render(request, 'guest/about.html',{'company':companys,'navbar':"about"})
+
+
+
+def addpostview(request):
+      
+           form = Post(request.POST or None)
+           if form.is_valid() :
+              form.save()
+              messages.success(request,"post is added successfully")
+              return HttpResponseRedirect('/')
+           context  ={
+              "form":form
+              }    
+
+           return render(request, 'guest/add_post.html',context)
+        
+            

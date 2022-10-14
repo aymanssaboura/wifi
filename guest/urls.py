@@ -2,7 +2,7 @@ from django.urls import path
 from .views import ( trip,index,
  searchLocation, searchTrip,
     home,flight,sea,visa,hotel,
-    document,insurance,about,shipping)
+    document,insurance,about,shipping,addpostview)
 
 urlpatterns = [
     path('', home, name='home'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('document/', document, name='document'),
     path('shipping/', shipping, name='shipping'),
     path('about/', about, name='about'),
-]
+    path('add_post/',addpostview,name='addpost'),
+   ]
