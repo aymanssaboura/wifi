@@ -112,6 +112,9 @@ def about(request):
 
 
 
+
+
+
 @login_required
 def add_post(request):
     if not request.user.is_MANAGER:
@@ -154,9 +157,7 @@ def add_post(request):
         
         form = PostForm()
         formimage = Imagepathform()
-        print(form)
-        print("************************************************")
-        print(formimage)
+       
     return render(request, 'guest/add_post.html', {
         'form': form,'formimage':formimage })
 

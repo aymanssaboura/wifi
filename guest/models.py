@@ -22,7 +22,7 @@ class Post(models.Model):
                     ('8','shipping'),
                      )
     category = models.CharField(choices=Ctegorychoises,max_length=2,default=1,blank=False)
-    image = models.ImageField(default='default.jpg',upload_to='plog', blank=True, null=True)
+    image = models.ImageField(default='default.jpg',upload_to='plog', blank=False, null=False)
     title = models.CharField(max_length=255)
     intro = models.TextField()
     body = models.TextField()
@@ -34,10 +34,15 @@ class Post(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return self.title
+        return self.title.name
 
-    def get_absolute_url(self):
-        return '/%s/%s/' % (self.category.slug, self.slug)
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
