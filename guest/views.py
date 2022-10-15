@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from trip.models import Location , Trip 
 from company.models  import Company
+
 # Create your views here.
 from django.db.models import Q
 from django.contrib import messages
@@ -123,18 +124,21 @@ def add_post(request):
             })
         })
     if request.method == "POST":
-        form = PostForm(request.POST)
-        formimage = Imagepathform(request.POST,request.FILES)
+        form = PostForm(request.POST,request.FILES)
+        formimage = Imagepathform(request.POST)
+        if request.POST:
+         image=request.FILES.get('image')
+        print("-------------------------------")
        
-        if form.is_valid() and formimage.is_valid():
+        print(image)
+       
+        if form.is_valid()  :
             
             post = form.save(commit=False)
-            
+            post.image = image
             post.save()
-            Imagepath = formimage.save(commit=False)
-         
-            Imagepath.save()
-
+           
+           
            
             return HttpResponse(
                 status=204,

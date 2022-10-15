@@ -22,8 +22,8 @@ class Post(models.Model):
                     ('8','shipping'),
                      )
     category = models.CharField(choices=Ctegorychoises,max_length=2,default=1,blank=False)
+    image = models.ImageField(default='default.jpg',upload_to='plog', blank=True, null=True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField()
     intro = models.TextField()
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -50,8 +50,8 @@ class Comment(models.Model):
         return self.name
 
 class imagepath(models.Model):
-    post = models.ForeignKey(Post, related_name='imagepath', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='plog/', blank=True, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg',upload_to='plog', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
