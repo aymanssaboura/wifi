@@ -16,7 +16,6 @@ urlpatterns += i18n_patterns(
     path('', include('guest.urls')),
     path('users/', include('users.urls')),
     path('staff/', admin.site.urls),
-    path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
 
     path('blog', include('blog.urls')),
@@ -30,7 +29,8 @@ urlpatterns += i18n_patterns(
     path('customer/', include('customer.urls')),
     path('trip/', include('trip.urls')),
     path('ked/', include('ked.urls')),
-    path('box/', include('box.urls')),
+    path('bus/', include('bus.urls')),
+    # path('driver/', include('bus.urls')),
 
    )
 

@@ -1,0 +1,30 @@
+
+{% for bus in buss %}
+<tr id="bus-{{ bus.pk }}" class="bus-row">
+
+    <td>{{ forloop.counter }}</td>
+    <td>{{ bus.account.name  }}</td>
+    <td>{{ bus.busType  }}</td>
+    <td>{{ bus.busNumber}}</td>
+    <td>{{ bus.seats  }}</td>
+    <td>{{ bus.start_date  }}</td>
+    <td>{{ bus.memo  }}</td>
+    <td>{{ bus.updated_at|date:"Y-m-d"   }}</td>
+    <td>{{ bus.author  }}</td>
+    <td>
+        <div class="td-actions">
+            <!-- <button class="btn btn-info btn-rounded btn-sm">Edit</button> -->
+            <!-- <button class="btn btn-secondary btn-rounded btn-sm">Remove</button> -->
+        <button class="btn btn-primary btn-sm" hx-get="{% url 'edit_customer' pk=customer.pk %}" hx-target="#customerform" hx-swap="outerHTML" >Edit</button>
+        </div>
+    </td>
+    <!-- <td>
+        <button class="btn btn-primary btn-sm" hx-get="{% url 'edit_customer' pk=customer.pk %}" hx-target="#dialog">Edit</button>
+    </td>
+ -->
+</tr>
+{% endfor %}
+
+
+
+

@@ -20,7 +20,7 @@ class Post(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('category', 'title','intro','body','status','image')
-
+        
     
 class Imagepath(forms.ModelForm):
     
