@@ -27,9 +27,10 @@ urlpatterns += i18n_patterns(
     path('reservation/', include('reservation.urls'),name='reservation'),
     path('passport/', include('passport.urls')),
     path('customer/', include('customer.urls')),
-    path('trip/', include('trip.urls')),
+    path('ttrip/', include('trip.urls')),
     path('ked/', include('ked.urls')),
     path('bus/', include('bus.urls')),
+    
     # path('driver/', include('bus.urls')),
 
    )

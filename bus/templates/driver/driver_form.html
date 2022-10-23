@@ -1,5 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
+
 <div hx-trigger=" driverListChanged from:body" hx-target="this" id="Driverform"
 {% if not driver %}
 x-data="{ open: false  }"

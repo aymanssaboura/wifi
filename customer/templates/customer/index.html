@@ -17,9 +17,52 @@
   {% block content %}
       {% include 'customer/customer_form.html' %}
 
-      <div class="table-container my-2 mx-auto"  id="example1_wrapper">
+      <div class="table-container  mx-auto col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  id="example1_wrapper">
+        <div class="t-header " > 
+          
+          <div class=" btn-group-toggle mt-1 " data-toggle="buttons">
+          <label class="btn btn-outline-primary btn-icon-text  active">
+            <input type="radio" value= "1" name="options11" id="option1" checked=""> All
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text   ">
+            <input type="radio" name="options" for="q" id="option2"> Customer
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Backage
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+            <input type="radio" name="options" id="option3"> Air line 
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Transport 
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Farry
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Visa
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Hotel
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Insurance
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Document
+          </label>
+          <label class="btn btn-outline-primary btn-icon-text  ">
+              <input type="radio" name="options" id="option3"> Shipping
+          </label>
+          </div>   
       
-        <div class="t-header"> Customers</div>
+         </div>
+              
+        
+
+					<!-- Row start -->
+			
+        
            <div class="table-responsive">
             <table id="table1" class="table custom-table ">
 
@@ -55,7 +98,7 @@
          </tbody>
       </table>
     </div>
-    </div>
+      </div>
 
 
   {% endblock %}

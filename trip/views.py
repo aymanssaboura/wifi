@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
@@ -8,7 +10,7 @@ import calendar
 
 from .models import *
 from .utils import Calendar
-from .forms import TripForm
+from .forms import TripForm , Locationform
 
 
 
@@ -66,3 +68,89 @@ def trip_(request, trip_id=None):
         return HttpResponseRedirect(reverse('calendar'))
     return render(request, 'cal/event.html', {'form': form})
     # return HttpResponse('hello')
+
+
+@login_required
+def add_location(request):
+    if not request.user.is_MANAGER:
+        return HttpResponse(
+        status=403,
+        headers={
+            'HX-Trigger': json.dumps({
+
+               "locationListChanged": None,
+            })
+        })
+    if request.method == "POST":
+        form = Locationform(request.POST)
+        if request.POST:
+            if form.is_valid()  :
+               Location = form.save(commit=False)
+               Location.save()
+           
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "locationListChanged": None,
+                        "showMessage": f"{Location.location} added."
+                    })
+                })
+        else:
+            return render(request, 'add_location.html', {'form': form})
+    else:
+        
+        form = Locationform()    
+    return render(request, 'add_location.html', {
+        'form': form })
+
+
+@login_required
+def new_flight(request):
+    if not request.user.is_MANAGER:
+        return HttpResponse(
+        status=403,
+        headers={
+            'HX-Trigger': json.dumps({
+
+               "customerListChanged": None,
+            })
+        })
+    if request.method == "POST":
+        accountForm = AccountForm(request.POST)
+        form = CustomerForm(request.POST,request.FILES)
+        # print("request.POST: ",request.POST)
+        if form.is_valid() and accountForm.is_valid():
+            # print(form)
+            account = accountForm.save(commit=False)
+            account.company=request.user.company
+            account.author=request.user
+            account.account_type= '20'
+            account.save()
+
+            customer = form.save(commit=False)
+            customer.author=request.user
+            customer.company=request.user.company
+            customer.account=account
+
+            customer.save()
+
+            # print(category)
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "customerListChanged": None,
+                        "showMessage": f"{customer.account.name} added."
+                    })
+                })
+        else:
+            return render(request, 'customer/customer_form.html', {
+        'form': form,'accountForm':accountForm
+    })
+    else:
+        accountForm = AccountForm()
+        form = CustomerForm()
+    return render(request, 'customer/customer_form.html', {
+        'form': form,'accountForm':accountForm
+    })

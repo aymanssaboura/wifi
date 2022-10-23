@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (trip_ , CalendarView,index)
+from .views import (trip_ , CalendarView,index ,add_location,new_flight)
 
 # app_name = 'trip'
 urlpatterns = [
@@ -9,4 +9,7 @@ urlpatterns = [
     path('index/', index, name='index'),
     path('new/', trip_, name='trip_new'),
 	path('edit/<int:trip_id>/', trip_, name='trip_edit'),
+	path('add_location/', add_location, name='add_location'),
+	path('new_flight/', new_flight, name='new_flight'),
 ]
+ 

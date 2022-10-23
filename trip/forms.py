@@ -1,5 +1,7 @@
 from django.forms import ModelForm, DateInput
-from .models import Trip
+from .models import Trip,Location,flight_trip
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, Submit
 
 class TripForm(ModelForm):
   class Meta:
@@ -8,7 +10,9 @@ class TripForm(ModelForm):
     widgets = {
       'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
       'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-    }
+      
+        }
+    
     # fields = ('bus','driver1','driver2','cityFrom','cityTo','company')
     fields = '__all__'
 
@@ -18,3 +22,15 @@ class TripForm(ModelForm):
   #   # input_formats parses HTML5 datetime-local input to datetime field
   #   self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
   #   self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+
+
+class Locationform(ModelForm):
+   class Meta:
+     model=Location
+     fields = '__all__'
+
+
+class flight_trip(ModelForm):
+   class Meta:
+     model=flight_trip
+     fields = '__all__'     

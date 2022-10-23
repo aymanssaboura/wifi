@@ -1,5 +1,9 @@
 from django.db import models
-
+from django.utils import timezone
+from django.conf import settings
+from ckeditor_uploader.fields import RichTextUploadingField
+from taggit.managers import TaggableManager
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -25,10 +29,11 @@ class Post(models.Model):
     image = models.ImageField(default='default.jpg',upload_to='plog', blank=False, null=False)
     title = models.CharField(max_length=255)
     intro = models.TextField()
-    body = models.TextField()
+    body =  RichTextUploadingField()
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=ACTIVE)
-    
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
 
     class Meta:
         ordering = ('-created_at',)

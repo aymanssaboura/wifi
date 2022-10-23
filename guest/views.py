@@ -1,12 +1,14 @@
 import json
+from django.shortcuts import render,redirect
+from django.shortcuts import get_list_or_404, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView, ListView ,DetailView,CreateView
-from django.shortcuts import render, redirect
+from django.views.generic import UpdateView, ListView ,DetailView,CreateView,DeleteView
 from django.http import HttpResponse,HttpResponseRedirect
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
-from trip.models import Location , Trip 
-from company.models  import Company
+from taggit.models import Tag
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 from django.db.models import Q
@@ -15,7 +17,8 @@ from datetime import datetime as dt
 from django.contrib.auth.decorators import user_passes_test
 from .forms import Post as PostForm,Imagepath as Imagepathform
 from .models import Post  ,imagepath 
-
+from trip.models import Location , Trip 
+from company.models  import Company
 
 def home(request):
         posts=Post.objects.all()

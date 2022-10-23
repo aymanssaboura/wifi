@@ -21,6 +21,34 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
+                        <a class="nav-link  
+                        {% if navbar == 'Company' %} active-page {% endif %}" href="{% url 'customer_index' %}" > 
+                        <i class="icon-domain nav-icon"></i>
+                        الشركات
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle
+                    {% if navbar == 'trip' %} active-page {% endif %}"  > 
+                    <i class="icon-beach_access nav-icon"></i>
+                    الرحلات
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="formsDropdown">
+                    <li>
+                        <a class="dropdown-item text-center" href="">الرحلات السياحية</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-center" href="">طيارة خاصة</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-center" href="{% url 'trip_new' %}">رحلات برية</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-center" href="">رحلات بحرية</a>
+                    </li>
+                </ul>
+            </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if navbar == 'reservation' %} active-page {% endif %}" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-briefcase nav-icon"></i>
                         الحجز
@@ -61,44 +89,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if navbar == 'company' %} active-page {% endif %}" href="#" id="company" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-domain nav-icon"></i>
-                        الشركات
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="company">
-                        <li>
-                            <a class="dropdown-item text-center" href="{% url 'customer_index' %}">الزبائن</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="cards.html">الرحلات</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="pricing.html">النقل الجوي</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="faq.html">النقل البري</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="search-results.html">النقل البحري</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="blog.html">التأشيرات</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="account-settings.html">الفنادق</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="account-settings.html">التأمين الصحي</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="{% url 'passport_index' %}">وثائق السفر</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-center" href="account-settings.html">الشحن</a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if navbar == 'mycompany' %} active-page {% endif %}" href="#" id="formsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-edit1 nav-icon"></i>

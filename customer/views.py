@@ -19,11 +19,14 @@ from django.contrib.auth.decorators import user_passes_test
 @login_required
 def index(request):
     company = request.user.company
+    # if request.method=="POST":
+    #     dd=request.POST.get('options11')
+    #     print(dd)
     customers = Customer.objects.filter(company=company).order_by('-id')
     if hasattr( request.user  ,'is_MANAGER' ) :
         accountForm = AccountForm()
         form = CustomerForm()
-        return render(request, 'customer/index.html',{'form': form,'accountForm':accountForm,'customers':customers ,'navbar':"company",'submenu':"customer"})
+        return render(request, 'customer/index.html',{'form': form,'accountForm':accountForm,'customers':customers ,'navbar':"Company",'submenu':""})
     return HttpResponse(
         status=403,
         headers={
