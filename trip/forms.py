@@ -30,7 +30,7 @@ class Locationform(ModelForm):
      fields = '__all__'
 
 
-class flight_trip(ModelForm):
+class FlightTripForm(ModelForm):
    class Meta:
      model=flight_trip
      fields = '__all__'     

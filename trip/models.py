@@ -80,10 +80,6 @@ class flight_trip(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     author      = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    # def status_available(self):
-    #     if  self.start_time <= datetime.now():
-    #         self.status = '3'
-    #         # print("gggggggg")
-    #         self.save()
+    
     def __str__(self):
         return self.title

@@ -10,7 +10,7 @@ import calendar
 
 from .models import *
 from .utils import Calendar
-from .forms import TripForm , Locationform
+from .forms import TripForm , Locationform ,FlightTripForm
 
 
 
@@ -113,44 +113,34 @@ def new_flight(request):
         headers={
             'HX-Trigger': json.dumps({
 
-               "customerListChanged": None,
+               "flightistChanged": None,
             })
         })
     if request.method == "POST":
-        accountForm = AccountForm(request.POST)
-        form = CustomerForm(request.POST,request.FILES)
-        # print("request.POST: ",request.POST)
-        if form.is_valid() and accountForm.is_valid():
-            # print(form)
-            account = accountForm.save(commit=False)
-            account.company=request.user.company
-            account.author=request.user
-            account.account_type= '20'
-            account.save()
+       
+        form = FlightTripForm(request.POST)
+        if form.is_valid():
+            flight_trip = form.save(commit=False)
+            flight_trip.author=request.user
+            flight_trip.company=request.user.company
+           
 
-            customer = form.save(commit=False)
-            customer.author=request.user
-            customer.company=request.user.company
-            customer.account=account
+            flight_trip.save()
 
-            customer.save()
-
-            # print(category)
+            
             return HttpResponse(
                 status=204,
                 headers={
                     'HX-Trigger': json.dumps({
-                        "customerListChanged": None,
-                        "showMessage": f"{customer.account.name} added."
+                        "flightistChanged": None,
+                        "showMessage": f"{flight_trip.title} added."
                     })
                 })
         else:
-            return render(request, 'customer/customer_form.html', {
-        'form': form,'accountForm':accountForm
-    })
+            return render(request, 'new_flight.html', {
+        'form': form    })
     else:
-        accountForm = AccountForm()
-        form = CustomerForm()
-    return render(request, 'customer/customer_form.html', {
-        'form': form,'accountForm':accountForm
-    })
+       
+        form = FlightTripForm()
+    return render(request, 'new_flight.html', {
+        'form': form    })

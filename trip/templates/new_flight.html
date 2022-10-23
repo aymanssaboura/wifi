@@ -5,9 +5,9 @@
 
 
 
-
-
 {% block content %}
 {% csrf_token %}
-{{ form }}
+
+{{ form|crispy }}
+  
 {% endblock %}
