@@ -1,0 +1,22 @@
+
+{% for reservation in reservations %}
+<tr id="reservation-{{ reservation.pk }}" class="reservation-row">
+
+    <td>{{ forloop.counter }}</td>
+
+    <td>{{ reservation.title  }}</td>
+    <td>{{ reservation.date  }}</td>
+    <td>{{ reservation.customer  }}</td>
+   
+    <td>
+        <div class="td-actions">
+         <button class="btn btn-primary btn-sm" hx-get="{% url 'edit_reservation' pk=reservation.pk %}" hx-target="#reservationform" hx-swap="outerHTML" >Edit</button>
+        </div>
+    </td>
+
+</tr>
+{% endfor %}
+
+
+
+

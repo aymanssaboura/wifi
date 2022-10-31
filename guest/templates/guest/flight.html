@@ -1,0 +1,68 @@
+
+    {% extends 'guest/g_base.html' %}
+    {% load i18n %}
+    {% load static %}
+    {% block content %}
+
+     <div class="container-fluid page-flight">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">{% trans "Flight"%}</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'home' %}">{% trans "Home"%}</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">{% trans "Flight"%}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Services</h6>
+                <h1>Our Travel Services</h1>
+            </div>
+            <div class="row">
+                {% for post in posts %}
+                {% if post.category == "4" %}
+                <div class="col-lg-6 col-md-4 col-sm-6 pb-2">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid"  src={{post.image}} alt="" style="object-fit:contain;" style="width: 400px;" style="height: 800px;">
+                            {% if user.is_MANAGER %}
+                       
+                            <div class="team-social">
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href=""><i class="fa fa-trash" ></i></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">{{post.title}}</h5>
+                            <p class="m-0">{{post.title}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    {% endblock content %}

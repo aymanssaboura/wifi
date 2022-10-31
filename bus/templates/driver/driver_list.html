@@ -1,0 +1,32 @@
+
+{% for driver in drivers %}
+<tr id="driver-{{ driver.pk }}" class="driver-row">
+
+    <td>{{ forloop.counter }}</td>
+    <td>{{ driver.account.name  }}</td>
+    <td>{{ driver.status  }}</td>
+    <td>{{ driver.company}}</td>
+    <td>{{ driver.phoneNumber  }}</td>
+    <td>{{ driver.phoneNumber1  }}</td>
+    <td>{{ driver.start_date  }}</td>
+    <td>{{ driver.create_at|date:"Y-m-d"   }}</td> 
+    <td>{{ driver.updated_at|date:"Y-m-d"   }}</td>
+    <td>{{ driver.author  }}</td>
+    <td>
+        <div class="td-actions">
+            <!-- <button class="btn btn-info btn-rounded btn-sm">Edit</button> -->
+            <!-- <button class="btn btn-secondary btn-rounded btn-sm">Remove</button> -->
+        <button class="btn btn-primary btn-sm" hx-get="{% url 'edit_customer' pk=customer.pk %}" hx-target="#customerform" hx-swap="outerHTML" >Edit</button>
+        </div>
+        
+    </td>
+    <!-- <td>
+        <button class="btn btn-primary btn-sm" hx-get="{% url 'edit_customer' pk=customer.pk %}" hx-target="#dialog">Edit</button>
+    </td>
+ -->
+</tr>
+{% endfor %}
+
+
+
+

@@ -1,0 +1,42 @@
+
+    {% extends 'guest/g_base.html' %}
+    {% load i18n %}
+    {% load static %}
+    {% block content %}
+
+   <!-- About Start -->
+   <div class="container-fluid py-5">
+    <div class="container pt-0">
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-relative w-100 h-100" src="{% static 'img/about/digital.jpg'%}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="position-relative about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">{% trans "About Us" %} </h6>
+                    <h1 class="mb-3">{% trans "We Provide The Best Applications For Your Business" %}</h1>
+
+                    <div class="row mb-4">
+                        <div class="col-3">
+                            <img class="img-fluid" src="{% static 'img/about/iyad1.jpg'%}" alt="">
+                        </div>
+                        
+                        <p class="col-12">{% trans "Director of Development Web application specialist" %} </p>
+                        <p class="col-12"><i class="fa fa-phone-alt mr-2"></i> +963-969602786</p>
+                        <div class="col-3">
+                            <img class="img-fluid" src="{% static 'img/about/ayman.jpg'%}" alt="">
+                        </div>
+                        <p class="col-12">{% trans "Director of Development Web application specialist" %} </p>
+                        <p class="col-12"><i class="fa fa-phone-alt mr-2"></i> +963-944422990</p>
+                    </div>
+                    <a href="" class="btn btn-primary mt-1">{% trans "Call us" %} </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+    {% endblock content %}

@@ -1,0 +1,180 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<div hx-trigger=" reservationlistChanged from:body" hx-target="this" id="reservationform"
+   {% if not reservation %}
+        x-data="{open: false}"
+   {% else %}
+        x-data="{open:true}"
+  {% endif %} class="container" >
+    <div class="container ">
+        <div class="row gutters">
+            <div class="form-group col-md-2 my-2 ">
+                <button x-show="!open" class="btn btn-outline-primary btn-icon-text  mx-3" @click="open = ! open">
+                    <span>سجل جديد</span>
+                </button>
+                <button class="btn btn-outline-primary btn-icon-text  mx-3" x-show="open" hx-get="{% url 'add_reservation' %}" hx-target='#reservationform'>
+                    <span>اخفاء</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <form hx-encoding="multipart/form-data" 
+        id="form" 
+        {% if not reservation %}
+              hx-post="{% url 'add_reservation' %}"
+        {% else %}
+              hx-post="{% url 'edit_reservation' pk=reservation.pk %}"
+        {% endif %}
+        hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+        class="modal-content"
+        hx-target='#reservationList'
+        x-transition>
+         
+         <div class="modal-body container " x-show="open" x-transition:enter.duration.1000ms x-transition:leave.duration.1000ms>
+            <div class="row gutters">
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.title|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.customer|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.Date|as_crispy_field }}
+                </div>
+            </div> <!-- row gutters -->
+            <div class="row gutters">
+                <div class="col-xl-6 col-lg-6 col-md-3 col-sm-3 col-3">
+                    <div class="custom-btn-group" style=" justify-content:space-between;">
+                        <button type="submit" class="btn btn-primary">save</button>
+                        {% if reservation %}
+                        <button type="button" class="btn btn-danger"
+                        hx-confirm="Are you sure you wish to delete {{ reservation.title }}?" hx-post="{% url 'remove_reservation' pk=reservation.pk %}"
+                                   >Remove</button>
+                        {% else %}
+                        <input type="reset" class="btn btn-primary" name="reset" value="Reset">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+           
+            <div class="container">
+                <div class="row">
+                    <div class="row gutters justify-content">
+                        <button type="button" hx-get=" url 'create_subreservation_form' %}" hx-target="#reservationforms" hx-swap="beforeend" class="btn btn-icon-text" >
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-beach_access"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Package 11</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-local_airport"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Flight</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-directions_bus"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Transport</p>
+                                </div>
+                            </div>
+                        </button>
+                      
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon  " style="background-color:gray ;">
+                                    <i class="icon-anchor "></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Farry</p>
+                                </div>
+                            </div>
+                        </button>
+                       
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-contact_mail"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Visa</p>
+                                </div>
+                            </div>
+                        </button>
+                      
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-home1"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Hotel</p>
+                                </div>
+                            </div>
+                        </button>
+                    
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-favorite"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Insurance</p>
+                                </div>
+                            </div>
+                        </button>
+                       
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-file-text"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Document</p>
+                                </div>
+                            </div>
+                        </button>
+                       
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-local_shipping"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Shipping</p>
+                                </div>
+                            </div>
+                        </button>
+                       
+                            <button class="btn btn-icon-text">
+                            <div class="overall-earnings">
+                                <div class="earnings-icon ">
+                                    <i class="icon-local_atm"></i>
+                                </div>
+                                <div class="earnings-stats">
+                                    <p>Commision</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div> 
+           
+    </form>
+
+</div>

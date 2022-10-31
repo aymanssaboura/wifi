@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<div id="subreservationforms" class="py-5 mt-5"></div>
+
+<div class="mt-5 py-5 border-t border-gray-100">
+    {% for subreservation in subreservations %}
+
+    {% include "subreservation_detail.html" %}
+
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 18:43+0300\n"
+"PO-Revision-Date: 2022-10-10 18:30+0225\n"
+"Last-Translator: b'  <root@root.com>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.6\n"
+
+#: .\Aymen\settings.py:147
+msgid "Français"
+msgstr ""
+
+#: .\Aymen\settings.py:148
+msgid "Deutsch"
+msgstr ""
+
+#: .\Aymen\settings.py:149 .\Wafi\settings.py:133
+msgid "English"
+msgstr ""
+
+#: .\Aymen\settings.py:150
+msgid "العربية"
+msgstr ""
+
+#: .\Wafi\settings.py:134
+msgid "Arabic"
+msgstr ""
+
+#: .\company\models.py:9
+msgid "name"
+msgstr "Nom"
+
+#: .\guest\templates\guest\about.html:18
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: .\guest\templates\guest\about.html:19
+msgid "We Provide The Best Applications For Your Business"
+msgstr ""
+
+#: .\guest\templates\guest\about.html:26 .\guest\templates\guest\about.html:31
+msgid "Director of Development Web application specialist"
+msgstr "Directeur du développement spécialiste des applications Web"
+
+#: .\guest\templates\guest\about.html:34
+msgid "Call us"
+msgstr "Appelle-nous"
+
+#: .\guest\templates\guest\document.html:10
+#: .\guest\templates\guest\document.html:14
+msgid "document"
+msgstr "Document de Voyage"
+
+#: .\guest\templates\guest\document.html:12
+#: .\guest\templates\guest\flight.html:12
+#: .\guest\templates\guest\header.html:70 .\guest\templates\guest\hotel.html:12
+#: .\guest\templates\guest\insurance.html:12
+#: .\guest\templates\guest\package.html:12 .\guest\templates\guest\sea.html:12
+#: .\guest\templates\guest\shipping.html:12
+#: .\guest\templates\guest\transport.html:11
+#: .\guest\templates\guest\visa.html:12
+msgid "Home"
+msgstr "Accueil"
+
+#: .\guest\templates\guest\flight.html:10
+#: .\guest\templates\guest\flight.html:14
+#: .\guest\templates\guest\header.html:83
+msgid "Flight"
+msgstr "ِِAérien"
+
+#: .\guest\templates\guest\header.html:77
+msgid "Trip"
+msgstr "Tour"
+
+#: .\guest\templates\guest\header.html:81
+msgid "Tickit"
+msgstr "Billet"
+
+#: .\guest\templates\guest\header.html:84
+#: .\guest\templates\guest\transport.html:9
+#: .\guest\templates\guest\transport.html:13
+msgid "Transport"
+msgstr "Voyage terrestre"
+
+#: .\guest\templates\guest\header.html:85 .\guest\templates\guest\sea.html:10
+#: .\guest\templates\guest\sea.html:14
+msgid "Ferry"
+msgstr "voyage en mer"
+
+#: .\guest\templates\guest\header.html:93
+msgid "Visa"
+msgstr "Visa"
+
+#: .\guest\templates\guest\header.html:100
+#: .\guest\templates\guest\hotel.html:10 .\guest\templates\guest\hotel.html:14
+msgid "Hotel"
+msgstr "Hôtel"
+
+#: .\guest\templates\guest\header.html:107
+msgid "Insurance"
+msgstr "Assurance"
+
+#: .\guest\templates\guest\header.html:114
+msgid "Travel Document"
+msgstr "Document de Voyage"
+
+#: .\guest\templates\guest\header.html:121
+msgid "Shipping"
+msgstr "Expédition"
+
+#: .\guest\templates\guest\header.html:128
+msgid "About us"
+msgstr "À propos de nous"
+
+#: .\guest\templates\guest\header.html:139
+msgid "admin"
+msgstr "administrateur"
+
+#: .\guest\templates\guest\header.html:146
+msgid "Sign Out"
+msgstr "Déconnexion"
+
+#: .\guest\templates\guest\header.html:153
+msgid "Sign In"
+msgstr "S'identifier"
+
+#: .\guest\templates\guest\insurance.html:10
+#: .\guest\templates\guest\insurance.html:14
+msgid "insurance"
+msgstr "Assurance"
+
+#: .\guest\templates\guest\package.html:10
+#: .\guest\templates\guest\package.html:14
+msgid "Package"
+msgstr "Tour"
+
+#: .\guest\templates\guest\shipping.html:10
+#: .\guest\templates\guest\shipping.html:14
+msgid "shipping"
+msgstr "Expédition"
+
+#: .\guest\templates\guest\visa.html:10 .\guest\templates\guest\visa.html:14
+msgid "visa"
+msgstr ""
+
+#: .\users\models.py:25
+msgid "email address"
+msgstr "Adresse e-mail"
+
+#: .\users\models.py:26
+msgid "username"
+msgstr "Nom d'utilisateur"
+
+#: .\users\models.py:27
+msgid "first name"
+msgstr "prénom"
+
+#: .\users\models.py:28
+msgid "last name"
+msgstr "nom de famille"
+
+#: .\users\models.py:29
+msgid "date joined"
+msgstr "date d'inscription"
+
+#: .\users\models.py:30
+msgid "active"
+msgstr "ِِActif"
+
+#: .\users\models.py:46
+msgid "user"
+msgstr ""
+
+#: .\users\models.py:47
+msgid "users"
+msgstr ""
+
+#~ msgid "Select Language"
+#~ msgstr "Choisir la langue"
